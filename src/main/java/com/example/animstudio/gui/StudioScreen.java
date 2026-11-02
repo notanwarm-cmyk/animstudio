@@ -202,7 +202,7 @@ public final class StudioScreen extends UiScreen {
         rmb = scrubbing = keyDrag = false; return super.mouseReleased(e);
     }
     @Override public boolean mouseScrolled(double mx, double my, double sx, double sy) {
-        if (my > height - BOT) { if (hasShiftDown()) scroll = Math.max(0, scroll - (float) sy * 10 / ppf * 3); else ppf = Mth.clamp(ppf * (sy > 0 ? 1.2f : 0.83f), 0.3f, 40f); return true; }
+        if (my > height - BOT) { if (down(GLFW.GLFW_KEY_LEFT_SHIFT)) scroll = Math.max(0, scroll - (float) sy * 10 / ppf * 3); else ppf = Mth.clamp(ppf * (sy > 0 ? 1.2f : 0.83f), 0.3f, 40f); return true; }
         return false;
     }
     @Override public boolean keyPressed(KeyEvent k) {
