@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "animstudio",
+  "version": "${version}",
+  "name": "Animation Studio",
+  "description": "Mine-imator style keyframe animation studio inside Minecraft.",
+  "environment": "client",
+  "entrypoints": { "client": ["com.example.animstudio.AnimStudioClient"] },
+  "mixins": ["animstudio.mixins.json"],
+  "depends": { "fabricloader": ">=0.19.1", "minecraft": "~26.2", "java": ">=25", "fabric-api": "*" },
+  "suggests": { "iris": "*" }
+}
