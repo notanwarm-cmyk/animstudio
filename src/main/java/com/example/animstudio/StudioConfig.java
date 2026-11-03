@@ -9,6 +9,7 @@ public final class StudioConfig {
     public boolean limitAllEntities = true;  // false = actors only
     public int limitFps = 15;
     public String irisPack = "";
+    public boolean swapRB = false;           // toggle if viewport colours look red<->blue swapped
     public static StudioConfig I = load();
     private static Path file() { return FabricLoader.getInstance().getConfigDir().resolve("animstudio.json"); }
     private static StudioConfig load() {

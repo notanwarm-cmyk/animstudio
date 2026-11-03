@@ -8,7 +8,7 @@ import java.util.List;
 public final class ShaderScreen extends UiScreen {
     private final Screen parent; private final List<String> packs = IrisBridge.packs();
     public ShaderScreen(Screen parent) { super("Shaders"); this.parent = parent; }
-    @Override public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float dt) {
+    @Override protected void draw(GuiGraphicsExtractor g, int mx, int my, float dt) {
         hits.clear(); Theme t = t(); int w = 260, x = (width - w) / 2, y = 30;
         g.fill(x - 8, y - 8, x + w + 8, height - 20, t.panel); g.outline(x - 8, y - 8, w + 16, height - 28, t.line);
         txt(g, "Shader packs (Iris)", x, y, t.text); y += 16;

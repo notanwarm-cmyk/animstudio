@@ -1,6 +1,4 @@
 package com.example.animstudio.mixin;
-import com.example.animstudio.StudioConfig;
-import com.example.animstudio.actor.ActorEntity;
 import com.example.animstudio.anim.FrameLimiter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
@@ -23,7 +21,7 @@ public class EntityRenderDispatcherMixin {
     @Inject(method = "extractEntity", at = @At("HEAD"), cancellable = true)
     private <E extends Entity> void animstudio$hold(E e, float partial, CallbackInfoReturnable<EntityRenderState> cir) {
         if (!FrameLimiter.active() || e == Minecraft.getInstance().getCameraEntity()) return;
-        if (!StudioConfig.I.limitAllEntities && !(e instanceof ActorEntity)) return;
+       
         EntityRenderState s = animstudio$cache.get(e.getId());
         Long st = animstudio$stamp.get(e.getId());
         if (s != null && st != null && st == FrameLimiter.bucket()) cir.setReturnValue(s);

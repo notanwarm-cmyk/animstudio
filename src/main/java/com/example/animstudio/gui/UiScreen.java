@@ -15,6 +15,20 @@ public abstract class UiScreen extends Screen {
     protected final List<Hit> hits = new ArrayList<>();
     private Hit dragging;
     protected UiScreen(String title) { super(Component.literal(title)); }
+    private String error;
+    /** Every screen draws inside try/catch: a bug shows a message here instead of crashing the whole game. */
+    @Override public final void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float dt) {
+        hits.clear();
+        try { draw(g, mx, my, dt); error = null; }
+        catch (Throwable t) {
+            if (error == null) t.printStackTrace();
+            error = t.toString(); g.fill(0, 0, width, height, 0xFF200000);
+            g.text(font, "Animation Studio error (game kept running):", 10, 10, 0xFFFFAAAA, false);
+            g.text(font, error.length() > 110 ? error.substring(0, 110) : error, 10, 24, 0xFFFFFFFF, false);
+            g.text(font, "Press ESC and send latest.log to the developer.", 10, 38, 0xFFFFAAAA, false);
+        }
+    }
+    protected abstract void draw(GuiGraphicsExtractor g, int mx, int my, float dt);
     protected Theme t() { return StudioConfig.I.theme(); }
     protected void txt(GuiGraphicsExtractor g, String s, int x, int y, int c) { g.text(font, s, x, y, c, false); }
 

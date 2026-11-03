@@ -1,11 +1,7 @@
 {
-  "required": true,
+  "required": false,
   "package": "com.example.animstudio.mixin",
   "compatibilityLevel": "JAVA_25",
-  "client": [
-    "PauseScreenMixin", "TitleScreenMixin",
-    "AvatarRenderStateMixin", "AvatarRendererMixin", "PlayerModelMixin",
-    "EntityRenderDispatcherMixin", "EntityRendererMixin"
-  ],
-  "injectors": { "defaultRequire": 1 }
+  "client": ["PauseScreenMixin", "TitleScreenMixin", "EntityRenderDispatcherMixin"],
+  "injectors": { "defaultRequire": 0 }
 }
